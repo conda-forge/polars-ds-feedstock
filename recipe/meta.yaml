@@ -25,9 +25,10 @@ requirements:
     - make
     - cargo-bundle-licenses
   host:
-    - python
-    - maturin >=1.2,<2.0
-    - pip
+    # this is a hacky way to do cross-compilation from linux to windows
+    - python              # [not (build_platform == "linux-64" and target_platform == "win-64")]
+    - maturin >=1.2,<2.0  # [not (build_platform == "linux-64" and target_platform == "win-64")]
+    - pip                 # [not (build_platform == "linux-64" and target_platform == "win-64")]
   run:
     - python
     - polars >=0.20.6
