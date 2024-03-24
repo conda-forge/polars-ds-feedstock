@@ -10,15 +10,20 @@ source:
   sha256: 167f29db7b498083fc8c3ac4855bd1bef7711843cd921cb048026bf5d603e729
 
 build:
-  skip: True  # [py<38 or win]
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip: True  # [py<38]
   number: 0
 
 requirements:
   build:
+    - python                              # [build_platform != target_platform]
+    # there is no cross-python for linux-64 -> win-64
+    - cross-python_{{ target_platform }}  # [build_platform != target_platform and not target_platform == "win-64"]
+    - crossenv                            # [build_platform != target_platform]
+    - maturin >=1.2.1,<2                  # [build_platform != target_platform]
     - {{ compiler('c') }}
     - {{ compiler('rust') }} 1.77
     - make
+    - cargo-bundle-licenses
   host:
     - python
     - maturin >=1.2,<2.0
@@ -41,7 +46,9 @@ about:
   doc_url: https://polars-ds-extension.readthedocs.io/
   summary: Polars extension for general data science use cases 
   license: MIT
-  license_file: LICENSE.txt
+  license_file:
+    - LICENSE.txt
+    - THIRDPARTY.yml
 
 extra:
   recipe-maintainers:
