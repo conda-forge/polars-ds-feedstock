@@ -1,5 +1,5 @@
 {% set name = "polars-ds" %}
-{% set version = "0.3.3" %}
+{% set version = "0.3.4" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/polars_ds-{{ version }}.tar.gz
-  sha256: 167f29db7b498083fc8c3ac4855bd1bef7711843cd921cb048026bf5d603e729
+  sha256: 5a51cda7fd42b9fccba529c782be9998aefec92b74b665d519afc2177d82b065
 
 build:
-  skip: True  # [py<38 or win]
+  skip: true  # [py<38 or win]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 
@@ -39,7 +39,7 @@ test:
 about:
   home: https://github.com/abstractqqq/polars_ds_extension
   doc_url: https://polars-ds-extension.readthedocs.io/
-  summary: Polars extension for general data science use cases 
+  summary: Polars extension for general data science use cases
   license: MIT
   license_file: LICENSE.txt
 
