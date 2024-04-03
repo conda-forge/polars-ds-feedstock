@@ -21,7 +21,6 @@ requirements:
     - crossenv                            # [build_platform != target_platform]
     - maturin >=1.2.1,<2                  # [build_platform != target_platform]
     - {{ compiler('c') }}
-    - {{ compiler('cxx') }}  # [win]
     - {{ compiler('rust') }} 1.77
     - make
     - cargo-bundle-licenses
