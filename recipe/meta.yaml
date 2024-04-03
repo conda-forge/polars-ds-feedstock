@@ -10,19 +10,26 @@ source:
   sha256: 5a51cda7fd42b9fccba529c782be9998aefec92b74b665d519afc2177d82b065
 
 build:
-  skip: true  # [py<38 or win]
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip: True  # [py<38]
   number: 1
 
 requirements:
   build:
+    - python                              # [build_platform != target_platform]
+    # there is no cross-python for linux-64 -> win-64
+    - cross-python_{{ target_platform }}  # [build_platform != target_platform and not target_platform == "win-64"]
+    - crossenv                            # [build_platform != target_platform]
+    - maturin >=1.2.1,<2                  # [build_platform != target_platform]
     - {{ compiler('c') }}
     - {{ compiler('rust') }} 1.77
     - make
+    - cargo-bundle-licenses
+    - cargo-feature
   host:
-    - python
-    - maturin >=1.2,<2.0
-    - pip
+    # this is a hacky way to do cross-compilation from linux to windows
+    - python              # [not (build_platform == "linux-64" and target_platform == "win-64")]
+    - maturin >=1.2,<2.0  # [not (build_platform == "linux-64" and target_platform == "win-64")]
+    - pip                 # [not (build_platform == "linux-64" and target_platform == "win-64")]
   run:
     - python
     - polars >=0.20.6
@@ -41,7 +48,9 @@ about:
   doc_url: https://polars-ds-extension.readthedocs.io/
   summary: Polars extension for general data science use cases
   license: MIT
-  license_file: LICENSE.txt
+  license_file:
+    - LICENSE.txt
+    - THIRDPARTY.yml
 
 extra:
   recipe-maintainers:
