@@ -1,5 +1,5 @@
 {% set name = "polars-ds" %}
-{% set version = "0.4.1" %}
+{% set version = "0.4.3" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/polars_ds-{{ version }}.tar.gz
-  sha256: f58ca6b7c07ac11c616a0bb6938381e167bce04b92c9d9d73b89cb859d03449c
+  sha256: a188e269127e0331b44642bf7951e444e58173b9963572e488a00e8a91c4448a
 
 build:
   skip: true  # [py<38]
@@ -21,6 +21,7 @@ requirements:
     - crossenv                            # [build_platform != target_platform]
     - maturin >=1.2.1,<2                  # [build_platform != target_platform]
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('rust') }}
     - make
     - cargo-bundle-licenses
@@ -33,7 +34,6 @@ requirements:
   run:
     - python
     - polars >=0.20.6
-    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]
 
 test:
   imports:
