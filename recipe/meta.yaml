@@ -35,6 +35,7 @@ requirements:
   run:
     - python
     - polars >=0.20.6
+    - typing-extensions  # [py<=311]
 
 test:
   imports:
