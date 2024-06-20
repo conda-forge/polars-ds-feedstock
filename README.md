@@ -360,6 +360,7 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@abstractqqq](https://github.com/abstractqqq/)
 * [@thewchan](https://github.com/thewchan/)
 * [@xhochy](https://github.com/xhochy/)
 
