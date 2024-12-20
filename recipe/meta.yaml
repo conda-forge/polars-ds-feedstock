@@ -6,12 +6,12 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/polars_ds-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/polars_ds-{{ version }}.tar.gz
   sha256: 2a85a1d4321b8ba9180bf7835ef55dea3275ac17024084601e2a2464703ed671
 
 build:
   skip: true  # [py<38]
-  number: 0
+  number: 1
 
 requirements:
   build:
