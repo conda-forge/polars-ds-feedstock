@@ -7,7 +7,7 @@ if [[ ("${target_platform}" == "win-64" && "${build_platform}" == "linux-64") ]]
   # maturin will expect libpython DSOs at PYO3_CROSS_LIB_DIR
   # which we don't have since we are not able to add python as a host dependency
   cargo feature pyo3 +generate-import-lib +abi3-py39
-  maturin build --release --strip
+  maturin build --release --strip --interpreter $RECIPE_DIR/mock-win-python.sh
   pip install target/wheels/polars_ds*.whl --target $PREFIX/lib/site-packages --platform win_amd64
 else
   # Run the maturin build via pip which works for direct and
