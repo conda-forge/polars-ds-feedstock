@@ -10,7 +10,7 @@ source:
   sha256: 6972e3958e2ee737edc1eba0395c26499ca4addad42aece24f6cfb937dcf93d0
 
 build:
-  skip: true  # [py<38]
+  skip: true  # [py<39]
   number: 0
 
 requirements:
@@ -29,12 +29,12 @@ requirements:
     - cargo-feature
   host:
     # this is a hacky way to do cross-compilation from linux to windows
-    - python              # [not (build_platform == "linux-64" and target_platform == "win-64")]
-    - maturin >=1.2,<2.0  # [not (build_platform == "linux-64" and target_platform == "win-64")]
-    - pip                 # [not (build_platform == "linux-64" and target_platform == "win-64")]
+    - python                # [not (build_platform == "linux-64" and target_platform == "win-64")]
+    - maturin >=1.7.4,<2.0  # [not (build_platform == "linux-64" and target_platform == "win-64")]
+    - pip                   # [not (build_platform == "linux-64" and target_platform == "win-64")]
   run:
     - python
-    - polars >=0.20.6
+    - polars >=1.4
     - typing-extensions  # [py<=311]
 
 test:
