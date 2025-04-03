@@ -8,5 +8,3 @@ cxx_compiler:
   - clangxx  # [win]
 cxx_compiler_version:
   - 17  # [win]
-python:
-  - 3.9
