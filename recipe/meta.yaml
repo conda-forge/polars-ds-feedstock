@@ -34,7 +34,7 @@ requirements:
     - pip                   # [not (build_platform == "linux-64" and target_platform == "win-64")]
   run:
     - python
-    - polars >=1.4
+    - polars >=1.4.0,!=1.25.0
     - typing-extensions  # [py<=311]
 
 test:
