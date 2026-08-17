@@ -1,6 +1,6 @@
 context:
   name: polars-ds
-  version: "0.12.0"
+  version: "0.12.1"
 
 package:
   name: ${{ name|lower }}
@@ -8,12 +8,12 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/polars_ds-${{ version }}.tar.gz
-  sha256: d7b39c7f70782caa8a0fbc0bf52c6cceaff2f109476540b680f612b6b83f8042
+  sha256: 7c0d0807e8ef61f7a2e5b71cc33fbfab333edd77dfc0634e676fa79cd62b66ab
   patches:
     - patches/update-ethnum.patch
 
 build:
-  number: 1
+  number: 0
   script:
     - python -m pip install . -vv
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
