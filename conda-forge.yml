@@ -1,7 +1,3 @@
-azure:
-  free_disk_space: true
-  settings_linux:
-    swapfile_size: 10GiB
 bot:
   inspection: hint-all
 conda_forge_output_validation: true
@@ -15,3 +11,8 @@ provider:
   osx_arm64: default
   win: azure
 test: native_and_emulated
+workflow_settings:
+  free_disk_space: quick
+  pagefile_size:
+    - os: linux
+      value: 10
